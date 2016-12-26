@@ -79,6 +79,11 @@ public class Silnie extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Licz!");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -161,6 +166,17 @@ public class Silnie extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        SilniaIteracyjnie si = new SilniaIteracyjnie();
+        long i = si.SilniaI(1000);
+        String wynik = String.valueOf(i);
+        jTextField1.setText(wynik);
+        SilniaRekurencyjnie sr = new SilniaRekurencyjnie();
+        long j = sr.SilniaR(1000); 
+        String wynik1 = String.valueOf(j);
+        jTextField2.setText(wynik1);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
