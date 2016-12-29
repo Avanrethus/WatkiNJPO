@@ -1,35 +1,41 @@
 
 package Silnie;
 
+
 import java.math.BigInteger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class SilniaRekurencyjnie extends Thread {
-    public String czas;
-    public BigInteger SilniaR(BigInteger i){
-        BigInteger silnia = BigInteger.ONE;
-        long start1 = System.currentTimeMillis();
-        for (int j = 0; j<=1; j++){
-            if (i.equals(BigInteger.ONE)){
-                silnia = BigInteger.ONE;
-            }
-            else
-                silnia = i.multiply(SilniaR(i.subtract(BigInteger.ONE)));
-        }
-        long stop1 = System.currentTimeMillis();
-        String czasliczenia = ""+ (stop1-start1)+" ms";
-        setCzas(czasliczenia);
-        return silnia;
-    }
-    public String getCzas(){
-        return czas;
-    }
+    public int liczba;
+    boolean runner;
 
-    public void setCzas(String czas) {
-        this.czas = czas;
+    SilniaRekurencyjnie(int i) {
+        liczba = i;
     }
+    public BigInteger SilniaR(int i)throws InterruptedException{
+        if (runner == false) return BigInteger.ZERO;
+        sleep(10);
+        if (i == 0) return BigInteger.ONE;
+        return SilniaR(i-1).multiply(new BigInteger(new Integer(i).toString()));
+    }
+    
     
     @Override
     public void run() {
-        
+        runner = true;
+        try{
+            System.out.println(SilniaR(liczba));
+        }
+        catch(InterruptedException ex){
+            Logger.getLogger(SilniaRekurencyjnie.class.getName()).log(Level.SEVERE,null,ex);
+    }
+        interrupt();
+    }
+    @Override
+    public void interrupt(){
+        runner = false;
+        Silnie.jTextField3.setText((System.currentTimeMillis()-Silnie.before)+" ms");
     }
 }

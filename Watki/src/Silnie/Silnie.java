@@ -84,9 +84,19 @@ public class Silnie extends javax.swing.JFrame {
 
         jTextField3.setEditable(false);
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
         jTextField4.setEditable(false);
         jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,24 +148,30 @@ public class Silnie extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    SilniaIteracyjnie watek1;
+    SilniaRekurencyjnie watek2;
+    public static long before;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        SilniaRekurencyjnie sr = new SilniaRekurencyjnie();
-        SilniaIteracyjnie si = new SilniaIteracyjnie();
-        si.SilniaI(BigInteger.TEN.multiply(BigInteger.TEN));
+        watek1 = new SilniaIteracyjnie(300);
+        watek2 = new SilniaRekurencyjnie(300);
         
-        sr.SilniaR(BigInteger.TEN.multiply(BigInteger.TEN));
-        
-        
-        
+        before = System.currentTimeMillis();
+        watek1.start();
+        watek2.start();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SilniaRekurencyjnie sr = new SilniaRekurencyjnie();
-        sr.interrupt();
-        SilniaIteracyjnie si = new SilniaIteracyjnie();
-        si.interrupt();
+        watek1.interrupt();
+        watek2.interrupt();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,8 +217,8 @@ public class Silnie extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    public static javax.swing.JTextField jTextField3;
+    public static javax.swing.JTextField jTextField4;
     private java.awt.TextArea textArea1;
     // End of variables declaration//GEN-END:variables
 }
